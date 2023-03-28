@@ -38,6 +38,7 @@ public class DogController {
 //        Dog spot = dogDao.findByName("SpotSpot");
 //        System.out.println(spot);
 
+        model.addAttribute("msg", "hello world");
         return "dogs";
     }
 
