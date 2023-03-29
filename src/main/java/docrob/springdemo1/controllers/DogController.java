@@ -56,10 +56,7 @@ public class DogController {
 
     @PostMapping("/create")
 //    @ResponseBody
-    public String createDog(@RequestParam String name, @RequestParam String gender) {
-        Dog dog = new Dog();
-        dog.setName(name);
-        dog.setGender(gender);
+    public String createDog(@ModelAttribute Dog dog) {
         dogDao.save(dog);
 //
 //        dogDao.save(dog);
@@ -70,13 +67,18 @@ public class DogController {
 
     @GetMapping("/create")
 //    @ResponseBody
-    public String createDog() {
+    public String createDog(Model model) {
 //        Dog dog = new Dog();
 //        dog.setName("Ralph");
 //
 //        dogDao.save(dog);
 //        return "dog created";
 
+        // create default values for form
+        Dog dog = new Dog();
+        dog.setName("Spot");
+        dog.setGender("Male");
+        model.addAttribute("dog", dog);
         return "/dogs/create";
     }
 
