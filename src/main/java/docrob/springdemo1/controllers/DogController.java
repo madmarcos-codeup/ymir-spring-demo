@@ -5,10 +5,7 @@ import docrob.springdemo1.repositories.DogRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,14 +54,30 @@ public class DogController {
         return "show page for a dog w id " + dogId;
     }
 
-    @GetMapping("/create")
-    @ResponseBody
-    public String createDog() {
+    @PostMapping("/create")
+//    @ResponseBody
+    public String createDog(@RequestParam String name, @RequestParam String gender) {
         Dog dog = new Dog();
-        dog.setName("Ralph");
-
+        dog.setName(name);
+        dog.setGender(gender);
         dogDao.save(dog);
-        return "dog created";
+//
+//        dogDao.save(dog);
+//        return "dog created";
+
+        return "/dogs/create";
+    }
+
+    @GetMapping("/create")
+//    @ResponseBody
+    public String createDog() {
+//        Dog dog = new Dog();
+//        dog.setName("Ralph");
+//
+//        dogDao.save(dog);
+//        return "dog created";
+
+        return "/dogs/create";
     }
 
     @Override

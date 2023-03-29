@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create a Dog</title>
+</head>
+<body>
+
+<h1>Create a Dog</h1>
+
+<form action="/dogs/create" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" class="field" value="Spot"/>
+<br>
+    <label for="gender">Gender</label>
+    <input type="text" name="gender" id="gender" class="field" value="Male"/>
+
+    <button>Create dog</button>
+</form>
+
+</body>
+</html>
