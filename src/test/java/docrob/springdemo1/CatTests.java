@@ -6,6 +6,7 @@ import docrob.springdemo1.models.Toy;
 import docrob.springdemo1.repositories.CatRepository;
 import docrob.springdemo1.repositories.PetOwnerRepository;
 import docrob.springdemo1.repositories.ToyRepository;
+import docrob.springdemo1.services.S3Service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,9 @@ class CatTests {
 
     @Autowired
     private ToyRepository toyDao;
+
+    @Autowired
+    private S3Service s3Service;
 
     @Test
     public void fetchCats() {
@@ -64,5 +68,18 @@ class CatTests {
         lolasCat.getToys().add(toy3);
 
         catDao.save(lolasCat);
+    }
+
+    @Test
+    public void uploadFile() {
+        String s3FileName = s3Service.uploadFile("/Users/markrobinson/Desktop/baby.gif");
+        System.out.println("filename to store in the db is " + s3FileName);
+        System.out.println(s3Service.getSignedURL(s3FileName));
+    }
+
+    @Test
+    public void downloadFile() {
+//        s3Service.uploadFile();
+        System.out.println(s3Service.getSignedURL("dude.gif"));
     }
 }

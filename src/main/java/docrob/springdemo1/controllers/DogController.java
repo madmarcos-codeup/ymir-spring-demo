@@ -2,6 +2,7 @@ package docrob.springdemo1.controllers;
 
 import docrob.springdemo1.models.Dog;
 import docrob.springdemo1.repositories.DogRepository;
+import docrob.springdemo1.services.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import java.util.List;
 @RequestMapping(path = "/dogs")
 public class DogController {
     private final DogRepository dogDao;
+
+    private final EmailService emailService;
 
     @GetMapping
     public String all(Model model) {
@@ -61,6 +64,8 @@ public class DogController {
 //
 //        dogDao.save(dog);
 //        return "dog created";
+
+        emailService.prepareAndSend(dog, "A dog has been created: " + dog.getName(), dog.toString());
 
         return "/dogs/create";
     }
