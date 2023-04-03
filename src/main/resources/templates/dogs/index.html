@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials :: head" >
+    <header th:insert="partials :: head"></header>
+    <title>Doglister</title>
+</head>
+<body>
+
+<nav th:replace="partials :: navbar">
+</nav>
+
+<div class="container-fluid">
+    <div class="alert alert-danger" th:if="${errMsg}">
+        Something bad happened!
+    </div>
+
+    <h1>All Dogs</h1>
+
+    <!--<h1 th:if="${dogs.size() > 0}"><span th:text="${dogs}">(insert dogs here)</span></h1>-->
+
+
+    <!--<ul th:each="dog : ${dogs}">-->
+    <!--    <li th:text="${dog.name}" >(insert dog name here)</li>-->
+    <!--</ul>-->
+
+    <table class="mt-3 table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+        </tr>
+        </thead>
+        <tr th:each="dog : ${dogs}">
+            <td>
+                <!--            <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>-->
+                <a th:href="@{|/dogs/${dog.id}|}" th:text="${dog.name}"></a>
+            </td>
+            <td th:text="${dog.gender}"></td>
+        </tr>
+    </table>
+
+
+    <footer th:replace="partials :: footer" >
+    </footer>
+</div>
+
+</body>
+</html>
