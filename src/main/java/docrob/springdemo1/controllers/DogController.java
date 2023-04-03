@@ -45,6 +45,8 @@ public class DogController {
 
     @PostMapping("/create")
     public String createDog(@ModelAttribute Dog dog) {
+        System.out.println(dog);
+
         dogDao.save(dog);
 //        emailService.prepareAndSend(dog, "A dog has been created: " + dog.getName(), dog.toString());
         return "redirect:/dogs";
