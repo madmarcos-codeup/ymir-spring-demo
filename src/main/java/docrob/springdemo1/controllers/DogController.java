@@ -24,7 +24,7 @@ public class DogController {
 
         model.addAttribute("dogs", dogs);
 
-        model.addAttribute("msg", "hello world");
+//        model.addAttribute("msg", "hello world");
         return "dogs/index";
     }
 
